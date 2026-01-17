@@ -9,7 +9,7 @@
     'company': 'Advanced Solutions',
     'maintainer': 'Advanced Solutions',
     'website': 'https://www.advanced-sol.com/',
-    'license': 'AGPL-3',
+    'license': 'LGPL',
     'depends': ['base', 'contacts', 'sale','website_sale'],
     'data': [
         'security/security.xml',
