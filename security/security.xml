@@ -1,0 +1,7 @@
+<odoo>
+    <data>
+        <record id="group_control_area" model="res.groups">
+                <field name="name">Create / Edit Area</field>
+        </record>
+    </data>
+</odoo>

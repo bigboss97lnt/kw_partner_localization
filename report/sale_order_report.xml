@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="commerce_report_document" inherit_id="sale.report_saleorder_document">
+            <xpath expr="//p[@t-if='doc.partner_id.vat']" position="replace">
+            </xpath>
+            <xpath expr="//div[@t-field='doc.partner_id']" position="replace">
+                <div t-field="doc.partner_id" />
+            </xpath>
+
+            <xpath expr="//div[@t-field='doc.partner_id']" position="after">
+                  <t t-out="'Phone : '"/>   <span t-field="doc.partner_id.phone"/><br></br>
+                  <t t-out="'Country : '"/>   <span t-field="doc.partner_id.country_id"/><br></br>
+                  <t t-out="'State : '"/>   <span t-field="doc.partner_id.state_id"/><br></br>
+            </xpath>
+
+            <xpath expr="//t[@t-set='address']" position="inside">
+
+                <t t-out="'Area : '"/>     <span t-field="doc.partner_id.area_id"/><br></br>
+                <t t-out="'Block : '"/> <span t-field="doc.partner_id.block"/><br></br>
+                <t t-out="'Avenue : '"/> <span t-field="doc.partner_id.avenue"/><br></br>
+                <t t-out="'Street : '"/> <span t-field="doc.partner_id.street"/><br></br>
+              <t t-out="'Building Number : '"/>  <span t-field="doc.partner_id.building_number"/><br></br>
+              <t t-out="'Additional Info : '"/>  <span t-field="doc.partner_id.additional_info"/><br></br>
+              <t t-out="'Floor : '"/><span t-field="doc.partner_id.floor"/><br></br>
+              <t t-out="'Flat : '"/> <span t-field="doc.partner_id.flat"/><br></br>
+              <t t-out="'Paci Number : '"/> <span t-field="doc.partner_id.paci_number"/><br></br>
+            </xpath>
+    </template>
+
+
+
+    <template id="commerce_report_delivery_document_inherit_sale_stock" inherit_id="stock.report_delivery_document">
+                <xpath expr="//div[@t-field='o.move_ids[0].partner_id']" position="replace">
+                          <div t-field="o.move_ids[0].partner_id"/>
+                </xpath>
+
+
+            <xpath expr="//div[@t-field='o.move_ids[0].partner_id']" position="after">
+                  <t t-out="'Phone : '"/>   <span t-field="o.partner_id.phone"/><br></br>
+                  <t t-out="'Country : '"/>   <span t-field="o.partner_id.country_id"/><br></br>
+                  <t t-out="'State : '"/>   <span t-field="o.partner_id.state_id"/><br></br>
+            </xpath>
+
+
+        <xpath expr="//t[@t-set='address']" position="inside">
+           <t t-out="'Area : '"/>  <span t-field="o.partner_id.area_id"/><br></br>
+           <t t-out="'Block : '"/>  <span t-field="o.partner_id.block"/><br></br>
+            <t t-out="'Avenue : '"/> <span t-field="o.partner_id.avenue"/><br></br>
+            <t t-out="'Building Number : '"/> <span t-field="o.partner_id.building_number"/><br></br>
+            <t t-out="'Additional Info : '"/> <span t-field="o.partner_id.additional_info"/><br></br>
+            <t t-out="'Street : '"/> <span t-field="o.partner_id.street"/><br></br>
+           <t t-out="'Floor : '"/> <span t-field="o.partner_id.floor"/><br></br>
+            <t t-out="'Flat : '"/>  <span t-field="o.partner_id.flat"/><br></br>
+            <t t-out="'Paci Number : '"/> <span t-field="o.partner_id.paci_number"/><br></br>
+        </xpath>
+    </template>
+
+</odoo>

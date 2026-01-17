@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="view_area_form" model="ir.ui.view">
+            <field name="name">view.area.form</field>
+            <field name="model">area</field>
+            <field name="arch" type="xml">
+                <form string="Area">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="state_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_area_tree" model="ir.ui.view">
+            <field name="name">view.area.tree</field>
+            <field name="model">area</field>
+            <field name="arch" type="xml">
+                <tree string="Area">
+                    <field name="name"/>
+                    <field name="state_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_area_view" model="ir.actions.act_window">
+            <field name="name">Area</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">area</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="menu_area_view"
+                  name="Area"
+                  parent="contacts.menu_localisation"
+                  action="action_area_view"
+                  sequence="101"/>
+    </data>
+</odoo>

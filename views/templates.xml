@@ -1,0 +1,145 @@
+<odoo>
+
+    <template id="website_address_inherit" inherit_id="website_sale.address">
+
+            <xpath expr="//input[@name='name']/.." position="replace">
+                <div t-attf-class="mb-3 #{error.get('name') and 'o_has_error' or ''} col-lg-12 div_name">
+                    <label class="col-form-label" for="name">Name*</label>
+                    <input type="text" name="name" t-attf-class="form-control #{error.get('name') and 'is-invalid' or ''}" t-att-value="'name' in checkout and checkout['name']" />
+                </div>
+            </xpath>
+
+            <xpath expr="//input[@name='phone']/.." position="replace">
+                    <div t-attf-class="mb-3 #{error.get('phone') and 'o_has_error' or ''} col-lg-6" id="div_phone">
+                        <label class="col-form-label" for="phone">Phone*</label>
+                        <input type="tel" name="phone" t-attf-class="form-control #{error.get('phone') and 'is-invalid' or ''}" t-att-value="'phone' in checkout and checkout['phone']" />
+                    </div>
+            </xpath>
+
+            <xpath expr="//input[@name='street']/.." position="replace">
+                    <div t-attf-class="mb-3 #{error.get('street') and 'o_has_error' or ''} col-lg-12 div_street" id="div_street">
+                        <label class="col-form-label" for="street">Street</label>
+                        <input type="text" name="street" t-attf-class="form-control #{error.get('street') and 'is-invalid' or ''}" t-att-value="'street' in checkout and checkout['street']" />
+                    </div>
+            </xpath>
+
+
+
+            <xpath expr="//input[@name='company_name']/.." position="replace">
+            </xpath>
+
+            <xpath expr="//input[@name='vat']/.." position="replace">
+            </xpath>
+
+            <xpath expr="//input[@name='zip']/.." position="replace">
+            </xpath>
+
+            <xpath expr="//input[@name='zip']/.." position="replace">
+            </xpath>
+            
+            <xpath expr="//input[@name='city']/.." position="replace">
+            </xpath>
+
+            <xpath expr="//input[@name='street2']/.." position="replace">
+            </xpath>
+            <xpath expr="//select[@name='state_id']/.." position="replace">
+            </xpath>
+
+            <xpath expr="//select[@name='country_id']/.." position="after">
+                <div t-attf-class="mb-3 #{error.get('state_id') and 'o_has_error' or ''} col-lg-6 div_state">
+                  <label class="col-form-label" for="state_id">State / Province * </label>
+                  <select name="state_id" t-attf-class="form-select #{error.get('state_id') and 'is-invalid' or ''}" data-init="1">
+                      <option value="">State / Province...</option>
+                      <t t-foreach="country_states" t-as="s">
+                          <option t-att-value="s.id" t-att-selected="s.id == ('state_id' in checkout and country and checkout['state_id'] != '' and int(checkout['state_id']))">
+                              <t t-esc="s.name" />
+                          </option>
+                      </t>
+                  </select>
+              </div>
+
+                <div t-attf-class="mb-3 #{error.get('area_id') and 'o_has_error' or ''} col-lg-6 div_state" >
+                  <label class="col-form-label" for="area_id">Area *</label>
+                  <select name="area_id" t-attf-class="form-select #{error.get('area_id') and 'is-invalid' or ''}" data-init="1">
+                      <option value="">Select An Area</option>
+                      <t t-foreach="state_areas" t-as="a">
+                          <option t-att-value="a.id" t-att-selected="a.id == ('area_id' in checkout and country and checkout['area_id'] != '' and int(checkout['state_id']))">
+                              <t t-esc="a.name" />
+                          </option>
+                      </t>
+                  </select>
+              </div>
+
+                <div t-attf-class="mb-3 #{error.get('block') and 'o_has_error' or ''}  col-lg-6 div_zip" id="div_block">
+                    <label class="col-form-label" for="block">Block</label>
+                    <input type="text" name="block"
+                           t-attf-class="form-control #{error.get('block') and 'is-invalid' or ''}"
+                           t-att-value="'block' in checkout and checkout['block']"/>
+                </div>
+
+                <div t-attf-class="form-group #{error.get('paci_number') and 'o_has_error' or ''} col-lg-12"
+                     id="div_paci_number" >
+                    <label class="col-form-label" for="paci_number">Paci No.</label>
+                    <input type="text" name="paci_number" id="paci_number"
+                           t-attf-class="form-control #{error.get('paci_number') and 'is-invalid' or ''}"
+                           t-att-value="'paci_number' in checkout and checkout['paci_number']"/>
+                </div>
+                <div class="w-100"/>
+                <div t-attf-class="form-group #{error.get('avenue') and 'o_has_error' or ''} col-lg-6" id="div_avenue">
+                    <label class="col-form-label" for="avenue">Avenue</label>
+                    <input type="text" name="avenue"
+                           t-attf-class="form-control #{error.get('avenue') and 'is-invalid' or ''}"
+                           t-att-value="'avenue' in checkout and checkout['avenue']"/>
+                </div>
+
+                <div t-attf-class="form-group #{error.get('building_number') and 'o_has_error' or ''} col-lg-6"
+                     id="div_building_number">
+                    <label class="col-form-label" for="building_number">Building Number *</label>
+                    <input type="text" name="building_number" id="building_number"
+                           t-attf-class="form-control #{error.get('building_number') and 'is-invalid' or ''}"
+                           t-att-value="'building_number' in checkout and checkout['building_number']"/>
+                </div>
+                <!-- <div t-attf-class="form-group #{error.get('additional_info') and 'o_has_error' or ''} col-lg-6"
+                     id="div_additional_info">
+                    <label class="col-form-label" for="additional_info">Additional Info *</label>
+                    <input type="text" name="additional_info" id="additional_info"
+                           t-attf-class="form-control #{error.get('additional_info') and 'is-invalid' or ''}"
+                           t-att-value="'additional_info' in checkout and checkout['additional_info']"/>
+                </div> -->
+                <div class="w-100"/>
+                <div t-attf-class="form-group #{error.get('floor') and 'o_has_error' or ''} col-lg-6" id="div_floor">
+                    <label class="col-form-label" for="floor">Floor</label>
+                    <input type="text" name="floor"
+                           t-attf-class="form-control #{error.get('floor') and 'is-invalid' or ''}"
+                           t-att-value="'floor' in checkout and checkout['floor']"/>
+                </div>
+                <div t-attf-class="form-group #{error.get('flat') and 'o_has_error' or ''} col-lg-6" id="div_flat">
+                    <label class="col-form-label" for="flat">Flat</label>
+                    <input type="text" name="flat"
+                           t-attf-class="form-control #{error.get('flat') and 'is-invalid' or ''}"
+                           t-att-value="'flat' in checkout and checkout['flat']"/>
+                </div>
+
+
+
+                <div t-attf-class="form-group #{error.get('google_map_link') and 'o_has_error' or ''} col-lg-12"
+                     id="div_google_map_link" >
+                    <label class="col-form-label" for="google_map_link">Google Map Link</label>
+                    <input type="text" name="google_map_link"
+                           t-attf-class="form-control #{error.get('google_map_link') and 'is-invalid' or ''}"
+                           t-att-value="'google_map_link' in checkout and checkout['google_map_link']"/>
+                </div>
+                <div class="w-100"/>
+                <div t-attf-class="form-group #{error.get('kuwait_finder_link') and 'o_has_error' or ''} col-lg-12"
+                     id="div_kuwait_finder_link" >
+                    <label class="col-form-label" for="kuwait_finder_link">kuwait Finder Link</label>
+                    <input type="text" name="kuwait_finder_link"
+                           t-attf-class="form-control #{error.get('kuwait_finder_link') and 'is-invalid' or ''}"
+                           t-att-value="'kuwait_finder_link' in checkout and checkout['kuwait_finder_link']"/>
+                </div>
+
+
+            </xpath>
+
+    </template>
+</odoo>

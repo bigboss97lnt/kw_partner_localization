@@ -1,0 +1,116 @@
+<odoo>
+    <data>
+        <record id="partner_address_inherited_form_View" model="ir.ui.view">
+            <field name="name">partner.address.inherited.form.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <!-- <xpath //div[hasclass('o_address_format')]/../.." position="after"> -->
+                 <xpath expr="//span[@name='address_name']/.." position="replace">
+                      <group>
+                    <!--<b attrs="{'invisible': [('is_company', '=', False)]}">Address</b>-->
+                      <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                      <field name="state_id" class="o_address_state" placeholder="State" options="{'no_open': True, 'no_quick_create': True}" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}" context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                      <field name="area_id" class="o_address_state" placeholder="Area"/>
+                      <field name="block" class="o_address_zip" placeholder="Block"/>
+                      <field name="street" placeholder="Street..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                      <field name="street2" placeholder="Street 2..." class="o_address_street" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                      <field name="avenue" class="o_address_zip" placeholder="Avenue"/>
+                      <field name="building_number" class="o_address_zip" placeholder="Building No."/>
+                      <field name="additional_info" placeholder="Additional Info"/>
+                      <field name="floor" class="o_address_zip" placeholder="Floor"/>
+                      <field name="flat" class="o_address_zip" placeholder="Flat"/>
+                      <field name="paci_number" placeholder="PACI No"/>
+                      <field name="google_map_link" placeholder="Google Map Link" widget="url"/>
+                      <field name="kuwait_finder_link" placeholder="Kuwait Finder Link" widget="url"/>
+                      <field name="street2" placeholder="Street 2..." class="o_address_street" invisible="1" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                      <field name="city" placeholder="City" class="o_address_city" invisible="1" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                      <field name="zip" placeholder="ZIP" class="o_address_zip" invisible="1" attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                            <field name="vat" placeholder="e.g. BE0477472701" attrs="{'readonly': [('parent_id','!=',False)]}"/>
+                      
+                      <field name="type" attrs="{'invisible': [('is_company','=', True)], 'required': [('is_company','!=', True)], 'readonly': [('user_ids', '!=', [])]}" class="fw-bold"/>
+                      </group>
+                </xpath>
+
+
+                <xpath expr="//div[hasclass('o_address_format')]" position="replace">
+                </xpath>
+                <xpath expr="//label[@for='street']" position="replace"/>
+                <xpath expr="//field[@name='child_ids']" position="attributes">
+                    <attribute name="context">{'default_parent_id': active_id, 'default_street': street,
+                        'default_street2': street2, 'default_city': city, 'default_state_id': state_id, 'default_zip':
+                        zip, 'default_country_id': country_id, 'default_lang': lang, 'default_user_id': user_id,
+                        'default_type': 'delivery'}
+                    </attribute>
+                </xpath>
+                <xpath expr="//field[@name='child_ids']/form/sheet/group/group/div" position="replace">
+                    <br></br>
+                    <field name="country_id" placeholder="Country" class="o_address_country"
+                           options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="state_id" class="o_address_state" placeholder="State"
+                           options="{'no_open': True, 'no_quick_create': True}"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"
+                           context="{'country_id': country_id, 'default_country_id': country_id, 'zip': zip}"/>
+                    <field name="area_id" class="o_address_state" placeholder="Area"/>
+                    <field name="block" class="o_address_zip" placeholder="Block"/>
+                    <field name="street" placeholder="Street..." class="o_address_street"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="street2" placeholder="Street 2..." class="o_address_street"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="avenue" class="o_address_zip" placeholder="Avenue"/>
+                    <field name="building_number" class="o_address_zip" placeholder="Building No."/>
+                    <field name="additional_info" placeholder="Additional Info"/>
+                    <field name="floor" class="o_address_zip" placeholder="Floor"/>
+                    <field name="flat" class="o_address_zip" placeholder="Flat"/>
+                    <field name="paci_number" placeholder="PACI No"/>
+                    <field name="google_map_link" placeholder="Google Map Link" widget="url"/>
+                    <field name="kuwait_finder_link" placeholder="Kuwait Finder Link" widget="url"/>
+                    <field name="street2" placeholder="Street 2..." class="o_address_street" invisible="1"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="city" placeholder="City" class="o_address_city" invisible="1"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                    <field name="zip" placeholder="ZIP" class="o_address_zip" invisible="1"
+                           attrs="{'readonly': [('type', '=', 'contact'),('parent_id', '!=', False)]}"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="partner_inherit_filter_View" model="ir.ui.view">
+            <field name="name">partner.inherit.filter.view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_res_partner_filter"/>
+            <field name="arch" type="xml">
+                <xpath expr="//search" position="replace">
+                    <search string="Search Partner">
+                        <field name="name" string="Customer"
+                               filter_domain="['|','|','|',('display_name', 'ilike', self), ('ref', '=', self),('phone', 'ilike', self),('mobile', 'ilike', self)]"/>
+                        <field name="parent_id" domain="[('is_company', '=', True)]" operator="child_of"/>
+                        <field name="phone"
+                               filter_domain="['|', ('phone', 'ilike', self), ('mobile', 'ilike', self)]"/>
+                        <field name="mobile" filter_domain="[('mobile', 'ilike', self)]"/>
+                        <field name="email" filter_domain="[('email', 'ilike', self)]"/>
+                        <field name="category_id" string="Tag" filter_domain="[('category_id', 'child_of', self)]"/>
+                        <field name="user_id"/>
+                        <field name="paci_number"/>
+
+                        <separator/>
+                        <filter string="Individuals" name="type_person" domain="[('is_company', '=', False)]"/>
+                        <filter string="Companies" name="type_company" domain="[('is_company', '=', True)]"/>
+                        <separator/>
+                        <filter string="Archived" name="inactive" domain="[('active', '=', False)]"/>
+                        <separator/>
+                        <group expand="0" name="group_by" string="Group By">
+                            <filter name="salesperson" string="Salesperson" domain="[]"
+                                    context="{'group_by' : 'user_id'}"/>
+                            <filter name="group_company" string="Company" context="{'group_by': 'parent_id'}"/>
+                            <filter name="group_country" string="Country" context="{'group_by': 'country_id'}"/>
+                        </group>
+                    </search>
+
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
